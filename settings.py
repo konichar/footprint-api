@@ -24,7 +24,7 @@ class SettingsClass(pydantic.BaseSettings):
     LOGGER_NAME: str = pydantic.Field(default="MAIN_LOGGER")
     LOGGER_LEVEL: int = pydantic.Field(default=logging.INFO)
 
-    PROD_SERVER_URL: str = pydantic.Field(default="https://footprint.herokuapp.com/")
+    PROD_SERVER_URL: str = pydantic.Field(default="https://api-footprint.herokuapp.com/")
 
     
     class Config:
