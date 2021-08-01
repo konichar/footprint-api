@@ -6,7 +6,7 @@ import fastapi
 from fastapi import FastAPI, Request
 # from router import router as Router
 
-# from db_utils.database import connect_db, disconnect_db
+# from db_utils.database import connect_db, disconnect_db 
 
 
 __all__ = ["app"]
