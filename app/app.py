@@ -5,6 +5,7 @@ from decouple import config
 API_KEY = config('API_KEY')
 
 class CreateApp:
+    """Class to perform """
     def __init__(self, app_name:str, github_link: str, session: str) -> None:
         self.heroku_name = heroku3.from_key(API_KEY)
         self.__createApp(app_name)
@@ -23,6 +24,9 @@ class CreateApp:
     def __config(self, config):
         self.config_vars = self.app.config()
         self.config_vars['SESSION'] = config
+
+    def __connectGithub(self, url):
+        pass
 
 def main():
     heroku_conn = heroku3.from_key(API_KEY)
