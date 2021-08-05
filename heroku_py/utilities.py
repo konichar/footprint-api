@@ -22,6 +22,7 @@ def get_commit_sha(git_url, branch="main"):
     """
     github_url => URL of the Github repository.
     branch => repository branch name
+
     Returns the recent commit SHA of the code.
     """
 
