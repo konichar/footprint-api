@@ -1,15 +1,18 @@
+from heroku_py.heroku_client import HerokuClient
 import re
-import heroku3
+from heroku_py.heroku_client import HerokuClient
 from decouple import config
 
+#constants
 API_KEY = config('API_KEY')
+
 
 class CreateApp:
     """Class to perform """
     def __init__(self, app_name:str, github_link: str, session: str) -> None:
-        self.heroku_name = heroku3.from_key(API_KEY)
-        self.__createApp(app_name)
-        self.__config(session)
+        self.heroku = HerokuClient(api_key=API_KEY)
+        self.heroku.create_app(app_name=app_name)
+        self.heroku.build_from_git(app_name_or_id=app_name, git_url=github_link)
         
 
     def __createApp(self, app_name):
