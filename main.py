@@ -4,9 +4,10 @@ import uvicorn
 from settings import Settings
 import fastapi
 from fastapi import FastAPI, Request
+from app.app import  generalAuth as CreateApp
 # from router import router as Router
 
-# from db_utils.database import connect_db, disconnect_db
+# from db_utils.database import connect_db, disconnect_db 
 
 
 __all__ = ["app"]
@@ -52,6 +53,13 @@ async def entry(request: Request):
     
     return {"answer": 'this is the answer'}
 
+@app.get("/auth")
+def auth(session:str, forwarder:str, reciever:str):
+    config_vars = dict()
+    config_vars['SESSION'] = session
+    config_vars['FORWARDER'] = forwarder
+    config_vars['RECIEVER'] =  reciever
+    return CreateApp(data=config_vars)
 
 if __name__ == "__main__":
     uvicorn.run(
