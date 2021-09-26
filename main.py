@@ -1,13 +1,14 @@
 from datetime import timedelta
-# from starlette.middleware.sessions import SessionMiddleware
 import uvicorn
 from settings import Settings
 import fastapi
 from fastapi import FastAPI, Request
-from app.app import  generalAuth as CreateApp
+
+# from app.app import generalAuth as CreateApp
+
 # from router import router as Router
 
-# from db_utils.database import connect_db, disconnect_db 
+# from db_utils.database import connect_db, disconnect_db
 
 
 __all__ = ["app"]
@@ -27,7 +28,6 @@ app = FastAPI(
     default_response_class=fastapi.responses.ORJSONResponse,
     # on_startup=[connect_db],
     # on_shutdown=[disconnect_db],
-    
     # swagger_ui_init_oauth={
     #     "clientId": Settings.CLIENT_ID,
     #     "clientSecret": Settings.CLIENT_SECRET
@@ -50,16 +50,19 @@ app = FastAPI(
 
 @app.get("/entry")
 async def entry(request: Request):
-    
-    return {"answer": 'this is the answer'}
 
-@app.get("/auth")
-def auth(session:str, forwarder:str, reciever:str):
-    config_vars = dict()
-    config_vars['SESSION'] = session
-    config_vars['FORWARDER'] = forwarder
-    config_vars['RECIEVER'] =  reciever
-    return CreateApp(data=config_vars)
+    return {"answer": "this is the answer"}
+
+
+# @app.get("/auth")
+# def auth(session:str, forwarder:str, reciever:str):
+#     config_vars = dict()
+#     config_vars['SESSION'] = session
+#     config_vars['FORWARDER'] = forwarder
+#     config_vars['RECIEVER'] =  reciever
+#     CreateApp(data=config_vars)
+#     return {"success": 'this is success'}
+
 
 if __name__ == "__main__":
     uvicorn.run(

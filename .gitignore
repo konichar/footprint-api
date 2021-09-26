@@ -1,3 +1,9 @@
 #environment variables
 env/
 .env
+footprint/*
+python3/*
+app/__pycache__/*
+__pycache__/*
+.vscode/
+.DS_Store
