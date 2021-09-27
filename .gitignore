@@ -7,3 +7,4 @@ app/__pycache__/*
 __pycache__/*
 .vscode/
 .DS_Store
+heroku_py/__pycache__/*

@@ -35,7 +35,7 @@ class HerokuClient:
         """
 
         name_regex = re.compile(r"^[a-z][a-z0-9-]{1,28}[a-z0-9]$")
-        if name_regex.search(app_name) is None:
+        if app_name is None:
             raise ValueError(
                 "Improper name configuration. Names must begin with an alphabet, can consist of numbers and hyphens as seperators."
             )
@@ -175,7 +175,7 @@ class HerokuClient:
         handle_error(response)
         return response.json()
 
-    def _create_or_update(self, app_name_or_id, **config_vars):
+    def _create_or_update(self, app_name_or_id, config_vars):
         """Base helper to create or update application config vars.
         config_vars: keyword arguments of config variables to be created or updated
         """
@@ -190,11 +190,11 @@ class HerokuClient:
         else:
             raise HerokuException("No config vars passed in")
 
-    def update_config(self, app_name_or_id, **config_vars):
+    def update_config(self, app_name_or_id, config_vars):
         """Update an existing config variable."""
-        return self._create_or_update(app_name_or_id, **config_vars)
+        return self._create_or_update(app_name_or_id, config_vars)
 
-    def delete_config(self, app_name_or_id, *config_vars):
+    def delete_config(self, app_name_or_id, config_vars):
         """Delete a config variable.
         config_vars: names of config vars to be deleted"""
         if config_vars:
@@ -209,6 +209,6 @@ class HerokuClient:
         else:
             raise HerokuException("No config vars passed in.")
 
-    def create_config(self, app_name_or_id, **config_vars):
+    def create_config(self, app_name_or_id, config_vars):
         """Create a config variable for the application."""
-        return self._create_or_update(app_name_or_id, **config_vars)
+        return self._create_or_update(app_name_or_id, config_vars)
